@@ -1,0 +1,509 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ifood-red: #ea1d2c;
+  --ifood-red-dark: #c41520;
+  --ifood-red-light: #ff3347;
+  --ifood-bg: #f5f5f5;
+  --ifood-white: #ffffff;
+  --ifood-gray: #717171;
+  --ifood-dark: #1a1a1a;
+  --navbar-h: 64px;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--ifood-bg);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--navbar-h);
+  background: var(--ifood-red);
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  box-shadow: 0 2px 12px rgba(234, 29, 44, 0.35);
+}
+
+.nav-logo {
+  font-family: 'League Spartan', sans-serif;
+  font-weight: 900;
+  font-size: 28px;
+  letter-spacing: -0.5px;
+  color: var(--ifood-white);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.nav-logo span {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  padding: 2px 10px;
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  vertical-align: middle;
+  color: #fff;
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative; /* Para o contador do carrinho */
+}
+.nav-icon:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+.nav-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #fff;
+}
+
+/* ── SCROLL TRACK ── */
+.scroll-outer {
+  margin-top: var(--navbar-h);
+  height: calc(100vh - var(--navbar-h));
+  overflow: hidden;
+  position: relative;
+}
+
+.scroll-outer::before,
+.scroll-outer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+  height: 48px;
+}
+.scroll-outer::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--ifood-bg), transparent);
+}
+.scroll-outer::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--ifood-bg), transparent);
+}
+
+/* ── COLUMN GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 24px 24px 0;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  will-change: transform;
+}
+
+.col:nth-child(1) {
+  animation: scroll-up 18s linear infinite;
+}
+.col:nth-child(2) {
+  animation: scroll-down 22s linear infinite;
+}
+.col:nth-child(3) {
+  animation: scroll-up 26s linear infinite;
+}
+.col:nth-child(4) {
+  animation: scroll-down 20s linear infinite;
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.grid:hover .col {
+  animation-play-state: paused;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--ifood-white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  cursor: pointer;
+  position: relative;
+}
+.card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 8px 28px rgba(234, 29, 44, 0.18);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body {
+  padding: 14px 16px 16px;
+}
+
+.card-title {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ifood-dark);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--ifood-gray);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.card-price {
+  font-family: 'League Spartan', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ifood-red);
+}
+
+.card-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-cart {
+  flex: 1;
+  background: var(--ifood-red);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-cart:hover {
+  background: var(--ifood-red-dark);
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--ifood-gray);
+  font-size: 16px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px 12px 0;
+    gap: 12px;
+  }
+  .col:nth-child(3),
+  .col:nth-child(4) {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .col:nth-child(2) {
+    display: none;
+  }
+}
+
+/* Estilos para botões de navegação */
+.nav-button {
+  background: var(--ifood-white);
+  color: var(--ifood-red);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.nav-button:hover {
+  background: var(--ifood-red-light);
+  color: var(--ifood-white);
+}
+
+/* Estilos para o contador do carrinho */
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: var(--ifood-white);
+  color: var(--ifood-red);
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+/* Estilos para o status do usuário */
+#user-status {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ifood-white);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Estilos para Modais */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 15% from the top and centered */
+  padding: 30px;
+  border-radius: 10px;
+  width: 90%; /* Could be more responsive */
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.modal-content h2 {
+  color: var(--ifood-dark);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content input[type='text'],
+.modal-content input[type='email'],
+.modal-content input[type='password'] {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.modal-content button[type='submit'] {
+  background: var(--ifood-red);
+  color: var(--ifood-white);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-content button[type='submit']:hover {
+  background: var(--ifood-red-dark);
+}
+
+.close-button {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Estilos para o Carrinho */
+#cart-items {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-name {
+  font-weight: 600;
+  color: var(--ifood-dark);
+}
+
+.cart-item-price {
+  font-size: 14px;
+  color: var(--ifood-gray);
+}
+
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.cart-item-quantity button && .quantity-btn {
+  background: var(--ifood-red);
+  color: var(--ifood-white);
+  border: none;
+  border-radius: 4px;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cart-item-quantity span {
+  font-weight: 600;
+  width: 20px;
+  text-align: center;
+}
+
+.remove-item-btn {
+  background: #dc3545;
+  color: var(--ifood-white);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+#cart-modal p {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: right;
+  margin-top: 20px;
+}
+
+#cart-modal button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#clear-cart-btn {
+  background: #ffc107;
+  color: var(--ifood-dark);
+}
+
+#checkout-btn {
+  background: var(--ifood-red);
+  color: var(--ifood-white);
+}

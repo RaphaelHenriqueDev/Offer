@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;900&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-logo">Offer <span>🔥 HOT</span></div>
+      <div class="nav-right">
+        <div class="nav-icon" id="cart-icon">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M21 7H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2zm-4 4H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2zm-3 4h-4a1 1 0 0 0 0 2h4a1 1 0 0 0 0-2z"
+            />
+          </svg>
+          <span id="cart-count" class="cart-count">0</span>
+        </div>
+        <div class="nav-icon" id="user-status">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0-8a3 3 0 1 1-3 3 3 3 0 0 1 3-3zm9 17a1 1 0 0 1-2 0 7 7 0 0 0-14 0 1 1 0 0 1-2 0 9 9 0 0 1 18 0z"
+            />
+          </svg>
+          <span id="user-name">Convidado</span>
+        </div>
+        <button id="login-btn" class="nav-button">Login</button>
+        <button id="register-btn" class="nav-button">Registrar</button>
+        <button id="logout-btn" class="nav-button" style="display: none;">Logout</button>
+      </div>
+    </nav>
+
+    <div class="scroll-outer">
+      <div class="grid" id="grid"></div>
+    </div>
+
+    <!-- Modais de Login e Registro -->
+    <div id="login-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Login</h2>
+        <form id="login-form">
+          <input type="email" id="login-email" placeholder="Email" required />
+          <input type="password" id="login-password" placeholder="Senha" required />
+          <button type="submit">Entrar</button>
+        </form>
+        <p id="login-message" class="error-message"></p>
+      </div>
+    </div>
+
+    <div id="register-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Registrar</h2>
+        <form id="register-form">
+          <input type="text" id="register-name" placeholder="Nome" required />
+          <input type="email" id="register-email" placeholder="Email" required />
+          <input type="text" id="register-phone" placeholder="Telefone" required />
+          <input type="password" id="register-password" placeholder="Senha" required />
+          <button type="submit">Registrar</button>
+        </form>
+        <p id="register-message" class="error-message"></p>
+      </div>
+    </div>
+
+    <!-- Modal do Carrinho -->
+    <div id="cart-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Seu Carrinho</h2>
+        <div id="cart-items">
+          <!-- Itens do carrinho serão carregados aqui -->
+        </div>
+        <p>Total: R$ <span id="cart-total">0.00</span></p>
+        <button id="clear-cart-btn">Limpar Carrinho</button>
+        <button id="checkout-btn">Finalizar Compra</button>
+      </div>
+    </div>
+
+    <script src="./js/products.js" defer></script>
+    <script src="./js/users.js" defer></script>
+    <script src="./js/cart.js" defer></script>
+  </body>
+</html>
