@@ -14,16 +14,19 @@ A powerful and elegant solution for managing offers. Built with modern technolog
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/raphael-costa/offer.git
    ```
 
 2. Navigate to the project directory:
+
    ```bash
    cd offer
    ```
 
 3. Install dependencies:
+
    ```bash
    npm install
    ```
@@ -53,4 +56,4 @@ For questions or support, reach out to [raphael.costa@example.com](mailto:raphae
 
 ---
 
-*Made with ❤️ by Raphael Costa*
+_Made with ❤️ by Raphael Costa_
