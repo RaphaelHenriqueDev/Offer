@@ -1,6 +1,5 @@
 # Offer
 
-![Offer Logo](https://via.placeholder.com/150) <!-- Replace with actual logo URL -->
 
 A powerful and elegant solution for managing offers. Built with modern technologies to streamline your workflow.
 
